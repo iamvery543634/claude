@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="56dp" android:height="56dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M28,48 A22,22 0 0,1 72,48 L72,70 Q65.4,77.7 57.7,70 Q50.0,63.4 42.3,70 Q34.6,77.7 28,70 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="26" android:endX="50" android:endY="70">
+                <item android:offset="0" android:color="#FFFFFFFF" />
+                <item android:offset="1" android:color="#FFB9E9F7" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path android:pathData="M39.7,46.9a3.3,4.6 0 1,0 6.6,0a3.3,4.6 0 1,0 -6.6,0zM53.7,46.9a3.3,4.6 0 1,0 6.6,0a3.3,4.6 0 1,0 -6.6,0z" android:fillColor="#FF14203A" />
+    <path android:pathData="M72,71m-17.5,0a17.5,17.5 0,1 1,35.0,0a17.5,17.5 0,1 1,-35.0,0" android:fillColor="#FF0E131C" />
+    <path android:pathData="M72,71m-15,0a15,15 0,1 1,30,0a15,15 0,1 1,-30,0">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="57" android:startY="56" android:endX="87" android:endY="86">
+                <item android:offset="0" android:color="#FFFFC857" />
+                <item android:offset="1" android:color="#FFF57C3B" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <group android:translateX="60.60" android:translateY="59.60" android:scaleX="0.95" android:scaleY="0.95">
+        <path android:pathData="M6.76,4.84l-1.8,-1.79 -1.41,1.41 1.79,1.79 1.42,-1.41zM4,10.5H1v2h3v-2zm9,-9.95h-2V3.5h2V0.55zm7.45,3.91l-1.41,-1.41 -1.79,1.79 1.41,1.41 1.79,-1.79zm-3.21,13.7l1.79,1.8 1.41,-1.41 -1.8,-1.79 -1.4,1.4zM20,10.5v2h3v-2h-3zm-8,-5c-3.31,0 -6,2.69 -6,6s2.69,6 6,6 6,-2.69 6,-6 -2.69,-6 -6,-6zm-1,16.95h2V19.5h-2v2.95zm-7.45,-3.91l1.41,1.41 1.79,-1.8 -1.41,-1.41 -1.79,1.8z" android:fillColor="#FFFFFFFF" />
+    </group>
+</vector>

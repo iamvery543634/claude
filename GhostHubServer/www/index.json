@@ -1,0 +1,175 @@
+{
+  "server": "Ghost Hub",
+  "updated": 1790203005,
+  "apps": [
+    {
+      "package": "com.ghost.hub",
+      "name": "Ghost Hub",
+      "icon": "hub",
+      "description": "Every Ghost app in one place. Install and update them from your PC.",
+      "changes": [
+        "Fixed \"download corrupted\": the Hub now re-checks the PC right before every download and retries automatically if a newer build appeared.",
+        "Brand-new look: floating ghosts, glowing app icons, progress rings, New & updated cards, filter chips and a details sheet for every app.",
+        "Big Update all button (and a floating one) whenever updates are waiting."
+      ],
+      "versionCode": 6,
+      "versionName": "2.0",
+      "size": 4679934,
+      "sha256": "2b883cda28f2ba9c4a22a6a374fd3e38c71453f6a8444cd512abf20810c582a0",
+      "file": "apps/com.ghost.hub-6-2b883cda28.apk",
+      "published": 1790188027
+    },
+    {
+      "package": "com.mirage.gps",
+      "name": "Ghost GPS",
+      "icon": "ghost",
+      "description": "Set your location anywhere: teleport, walk a route or steer with the joystick.",
+      "changes": [
+        "Brand-new look to match Ghost GPS for iPhone: full-screen map with a floating search card and one big \"Move me here\" button.",
+        "Favourites show as one-tap chips above the button (long-press one to remove it). Tabs now have names: Teleport, Walk, Joystick.",
+        "Just GPS now: opens straight to the map. The VPN lives in Ghost VPN. The Dark map style is fixed too."
+      ],
+      "versionCode": 6,
+      "versionName": "2.0",
+      "size": 17456869,
+      "sha256": "bf2c82894cefbc0f452d33e85e5e299acaa2b712e39cf61f9db0608088fb5499",
+      "file": "apps/com.mirage.gps-6-bf2c82894c.apk",
+      "published": 1790201630
+    },
+    {
+      "package": "com.ghost.volume",
+      "name": "Ghost Volume",
+      "icon": "volume",
+      "description": "Your own volume for every app, switched automatically when you open it.",
+      "changes": [
+        "Fixed: pop-ups, the volume panel and game overlays no longer snap the volume back to normal while you're still in an app.",
+        "Music keeps its own volume in the background: leave Spotify or YouTube and it stays at its level while it plays.",
+        "New design: a Now card shows what you're hearing and through what, every app gets its own slider, and a quick Add an app screen.",
+        "Your normal volume is saved safely, so it always comes back, even if Android restarts Ghost Volume."
+      ],
+      "versionCode": 5,
+      "versionName": "2.0",
+      "size": 4665981,
+      "sha256": "6c491645e91ecdce70059b6451bb341dc5f9fb2ca88b8351bb35abdcb8cd279b",
+      "file": "apps/com.ghost.volume-5-6c491645e9.apk",
+      "published": 1790203004
+    },
+    {
+      "package": "com.ghost.terminal",
+      "name": "Ghost Terminal",
+      "icon": "terminal",
+      "description": "A shell on your phone, with a side list of commands that work on your device.",
+      "changes": [
+        "New keys row: Tab, arrows, | > && / ~ - \" * and Ctrl-C.",
+        "Tab completes command names and file/folder names like a real shell; \u2193 goes forward in history."
+      ],
+      "versionCode": 3,
+      "versionName": "1.2",
+      "size": 4635893,
+      "sha256": "83cd074ad67576d2fece9654f28ec0c6d3c287d8abb0318778060b2f405100fa",
+      "file": "apps/com.ghost.terminal-3-83cd074ad6.apk",
+      "published": 1790186795
+    },
+    {
+      "package": "com.ghost.weather",
+      "name": "Ghost Weather",
+      "icon": "weather",
+      "description": "Live weather where you are and anywhere you save: hourly, 7-day, rain alerts at a glance.",
+      "changes": [
+        "Home-screen widget with the current weather (long-press your home screen \u203a Widgets \u203a Ghost Weather).",
+        "Share forecast from the menu."
+      ],
+      "versionCode": 3,
+      "versionName": "1.1",
+      "size": 4654057,
+      "sha256": "194956de2c7150bab28923057f2d88420c7d050dfb8e6bbb2f6fcfebefe97af6",
+      "file": "apps/com.ghost.weather-3-194956de2c.apk",
+      "published": 1790186855
+    },
+    {
+      "package": "com.ghost.school",
+      "name": "Ghost School",
+      "icon": "school",
+      "description": "Homework, timetable, grades, targets, exams and revision, with XP, levels and badges.",
+      "changes": [
+        "Timetable tab, with what's on now and next on Home.",
+        "Exam countdowns, and targets per subject (tap a subject in Grades).",
+        "XP, levels and 17 badges to unlock, plus a daily goal ring and a 12-week study map.",
+        "Flashcards: paste a whole list at once, and an Answer first mode.",
+        "Quick-fire: new Squares & roots and Percentages modes.",
+        "Star important homework, back up and restore all your data, and a centred bottom bar."
+      ],
+      "versionCode": 24,
+      "versionName": "2.4",
+      "size": 4704968,
+      "sha256": "6e5f7b13f7cb2be8cb10629d664ac12fcdd5df73842358cb0d6528f0f97b84e8",
+      "file": "apps/com.ghost.school-24-6e5f7b13f7.apk",
+      "published": 1790188440
+    },
+    {
+      "package": "com.ghost.editor",
+      "name": "Ghost Image Editor",
+      "icon": "editor",
+      "description": "Crop, rotate, filters, adjust, draw and add text to your photos. Nothing leaves your phone.",
+      "changes": [
+        "Bottom tool bar and panels are now properly centred.",
+        "Emoji stickers and a Vignette slider."
+      ],
+      "versionCode": 3,
+      "versionName": "1.2",
+      "size": 4646564,
+      "sha256": "ef0f9790e51a460e53e895373719013e8d6ffca5a6e9e6bf8e3e5f6326f78098",
+      "file": "apps/com.ghost.editor-3-ef0f9790e5.apk",
+      "published": 1790188105
+    },
+    {
+      "package": "com.ghost.vpn",
+      "name": "Ghost VPN",
+      "icon": "vpn",
+      "description": "One-tap VPN through free volunteer servers in many countries. Tests servers from your phone to find the fastest.",
+      "changes": [
+        "Data used this session, shown under the timer.",
+        "Recent countries as one-tap chips, and an option to connect when you open the app."
+      ],
+      "versionCode": 2,
+      "versionName": "1.1",
+      "size": 4653121,
+      "sha256": "4e71a24f6d0b2f59e789badbe9a74d5c2333945ae3998b350e0439fe310454bd",
+      "file": "apps/com.ghost.vpn-2-4e71a24f6d.apk",
+      "published": 1790187009
+    },
+    {
+      "package": "com.ghost.browser",
+      "name": "Ghost Browser",
+      "icon": "browser",
+      "description": "A private browser: ad & tracker blocker, incognito tabs, and sites forget you when you leave.",
+      "changes": [
+        "Pull down to refresh.",
+        "Add to start page: pin your own sites next to the shortcuts (long-press to remove).",
+        "Plus the security update: incognito tabs, forget me, site security panel, stronger ad blocker."
+      ],
+      "versionCode": 3,
+      "versionName": "2.1",
+      "size": 4862868,
+      "sha256": "f765937d48c734c2b8415063645c9d4e687ce0beb987e318c8b004f0af57538d",
+      "file": "apps/com.ghost.browser-3-f765937d48.apk",
+      "published": 1790187055
+    },
+    {
+      "package": "com.ghost.video",
+      "name": "Ghost Video",
+      "icon": "video",
+      "description": "Video editor: trim, filters, colour, speed, rotate, captions and sound. Saved on your phone.",
+      "changes": [
+        "Tool bar spread evenly and centred, and panel buttons centred.",
+        "Save a frame as a photo (\ud83d\udcf8)."
+      ],
+      "versionCode": 2,
+      "versionName": "1.1",
+      "size": 7419603,
+      "sha256": "20f7b71acb686937a4639c9851ccc542cb5778e5a9c9e653e69be60483b8d5e2",
+      "file": "apps/com.ghost.video-2-20f7b71acb.apk",
+      "published": 1790188114
+    }
+  ]
+}

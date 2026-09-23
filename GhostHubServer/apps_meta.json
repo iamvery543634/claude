@@ -1,0 +1,124 @@
+{
+  "server_name": "Ghost Hub",
+  "apps": [
+    {
+      "package": "com.ghost.hub",
+      "name": "Ghost Hub",
+      "icon": "hub",
+      "apk": "C:/Users/iamve/AndroidDev/GhostHub/dist/GhostHub.apk",
+      "description": "Every Ghost app in one place. Install and update them from your PC.",
+      "changes": [
+        "Fixed \"download corrupted\": the Hub now re-checks the PC right before every download and retries automatically if a newer build appeared.",
+        "Brand-new look: floating ghosts, glowing app icons, progress rings, New & updated cards, filter chips and a details sheet for every app.",
+        "Big Update all button (and a floating one) whenever updates are waiting."
+      ]
+    },
+    {
+      "package": "com.mirage.gps",
+      "name": "Ghost GPS",
+      "icon": "ghost",
+      "apk": "C:/Users/iamve/AndroidDev/MirageGPS/dist/Ghost.apk",
+      "description": "Set your location anywhere: teleport, walk a route or steer with the joystick.",
+      "changes": [
+        "Brand-new look to match Ghost GPS for iPhone: full-screen map with a floating search card and one big \"Move me here\" button.",
+        "Favourites show as one-tap chips above the button (long-press one to remove it). Tabs now have names: Teleport, Walk, Joystick.",
+        "Just GPS now: opens straight to the map. The VPN lives in Ghost VPN. The Dark map style is fixed too."
+      ]
+    },
+    {
+      "package": "com.ghost.volume",
+      "name": "Ghost Volume",
+      "icon": "volume",
+      "apk": "C:/Users/iamve/AndroidDev/GhostVolume/dist/GhostVolume.apk",
+      "description": "Your own volume for every app, switched automatically when you open it.",
+      "changes": [
+        "Fixed: pop-ups, the volume panel and game overlays no longer snap the volume back to normal while you're still in an app.",
+        "Music keeps its own volume in the background: leave Spotify or YouTube and it stays at its level while it plays.",
+        "New design: a Now card shows what you're hearing and through what, every app gets its own slider, and a quick Add an app screen.",
+        "Your normal volume is saved safely, so it always comes back, even if Android restarts Ghost Volume."
+      ]
+    },
+    {
+      "package": "com.ghost.terminal",
+      "name": "Ghost Terminal",
+      "icon": "terminal",
+      "apk": "C:/Users/iamve/AndroidDev/GhostTerminal/dist/GhostTerminal.apk",
+      "description": "A shell on your phone, with a side list of commands that work on your device.",
+      "changes": [
+        "New keys row: Tab, arrows, | > && / ~ - \" * and Ctrl-C.",
+        "Tab completes command names and file/folder names like a real shell; ↓ goes forward in history."
+      ]
+    },
+    {
+      "package": "com.ghost.weather",
+      "name": "Ghost Weather",
+      "icon": "weather",
+      "apk": "C:/Users/iamve/AndroidDev/GhostWeather/dist/GhostWeather.apk",
+      "description": "Live weather where you are and anywhere you save: hourly, 7-day, rain alerts at a glance.",
+      "changes": [
+        "Home-screen widget with the current weather (long-press your home screen › Widgets › Ghost Weather).",
+        "Share forecast from the menu."
+      ]
+    },
+    {
+      "package": "com.ghost.school",
+      "name": "Ghost School",
+      "icon": "school",
+      "apk": "C:/Users/iamve/AndroidDev/GhostSchool/dist/GhostSchool.apk",
+      "description": "Homework, timetable, grades, targets, exams and revision, with XP, levels and badges.",
+      "changes": [
+        "Timetable tab, with what's on now and next on Home.",
+        "Exam countdowns, and targets per subject (tap a subject in Grades).",
+        "XP, levels and 17 badges to unlock, plus a daily goal ring and a 12-week study map.",
+        "Flashcards: paste a whole list at once, and an Answer first mode.",
+        "Quick-fire: new Squares & roots and Percentages modes.",
+        "Star important homework, back up and restore all your data, and a centred bottom bar."
+      ]
+    },
+    {
+      "package": "com.ghost.editor",
+      "name": "Ghost Image Editor",
+      "icon": "editor",
+      "apk": "C:/Users/iamve/AndroidDev/GhostEditor/dist/GhostEditor.apk",
+      "description": "Crop, rotate, filters, adjust, draw and add text to your photos. Nothing leaves your phone.",
+      "changes": [
+        "Bottom tool bar and panels are now properly centred.",
+        "Emoji stickers and a Vignette slider."
+      ]
+    },
+    {
+      "package": "com.ghost.vpn",
+      "name": "Ghost VPN",
+      "icon": "vpn",
+      "apk": "C:/Users/iamve/AndroidDev/GhostVPN/dist/GhostVPN.apk",
+      "description": "One-tap VPN through free volunteer servers in many countries. Tests servers from your phone to find the fastest.",
+      "changes": [
+        "Data used this session, shown under the timer.",
+        "Recent countries as one-tap chips, and an option to connect when you open the app."
+      ]
+    },
+    {
+      "package": "com.ghost.browser",
+      "name": "Ghost Browser",
+      "icon": "browser",
+      "apk": "C:/Users/iamve/AndroidDev/GhostBrowser/dist/GhostBrowser.apk",
+      "description": "A private browser: ad & tracker blocker, incognito tabs, and sites forget you when you leave.",
+      "changes": [
+        "Pull down to refresh.",
+        "Add to start page: pin your own sites next to the shortcuts (long-press to remove).",
+        "Plus the security update: incognito tabs, forget me, site security panel, stronger ad blocker."
+      ]
+    },
+    {
+      "package": "com.ghost.video",
+      "name": "Ghost Video",
+      "icon": "video",
+      "apk": "C:/Users/iamve/AndroidDev/GhostVideo/dist/GhostVideo.apk",
+      "description": "Video editor: trim, filters, colour, speed, rotate, captions and sound. Saved on your phone.",
+      "changes": [
+        "Tool bar spread evenly and centred, and panel buttons centred.",
+        "Save a frame as a photo (📸)."
+      ]
+    }
+  ]
+}

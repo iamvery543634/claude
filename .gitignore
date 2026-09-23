@@ -1,0 +1,19 @@
+# Never commit signing keys, passwords or machine paths
+*.jks
+*.keystore
+keystore.properties
+local.properties
+github_token
+.ghosthub/
+
+# Build output and APKs (APKs go to GitHub Releases, not git)
+build/
+.gradle/
+.kotlin/
+dist/
+*.apk
+GhostHubServer/www/apps/
+
+# Logs
+*.log
+build_log.txt

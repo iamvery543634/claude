@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#0F1116</color>
+    <color name="panel">#171A21</color>
+    <color name="card">#1D2129</color>
+    <color name="card_hi">#262A34</color>
+    <color name="well">#111419</color>
+    <color name="stroke">#2A2F3A</color>
+    <color name="accent">#72E2F7</color>
+    <color name="accent_dim">#15303A</color>
+    <color name="on_accent">#062129</color>
+    <color name="violet">#8B7CF6</color>
+    <color name="text">#EEF1F5</color>
+    <color name="text2">#9AA3AF</color>
+    <color name="text3">#697180</color>
+    <color name="green">#6ED39C</color>
+    <color name="red">#F0736E</color>
+    <color name="yellow">#F4C543</color>
+    <color name="warn_stroke">#5C4E1E</color>
+</resources>
