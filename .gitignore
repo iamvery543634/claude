@@ -17,3 +17,6 @@ GhostHubServer/www/apps/
 # Logs
 *.log
 build_log.txt
+
+# Python
+__pycache__/
