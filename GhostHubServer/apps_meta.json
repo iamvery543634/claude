@@ -6,11 +6,11 @@
       "name": "Ghost Hub",
       "icon": "hub",
       "apk": "C:/Users/iamve/AndroidDev/GhostHub/dist/GhostHub.apk",
-      "description": "Every Ghost app in one place. Install and update them from your PC.",
+      "description": "Every Ghost app in one place. Install and update them anywhere.",
       "changes": [
-        "Fixed \"download corrupted\": the Hub now re-checks the PC right before every download and retries automatically if a newer build appeared.",
-        "Brand-new look: floating ghosts, glowing app icons, progress rings, New & updated cards, filter chips and a details sheet for every app.",
-        "Big Update all button (and a floating one) whenever updates are waiting."
+        "Works anywhere: the Hub now gets its apps from GitHub, so updates work on mobile data, at school or on a friend's Wi-Fi.",
+        "Your PC still works as a fallback on home Wi-Fi. Pick Auto, GitHub only or PC only in Settings, and see where the list came from.",
+        "Waits longer on slow connections and explains problems plainly (\"No internet\", \"GitHub didn't answer\")."
       ]
     },
     {

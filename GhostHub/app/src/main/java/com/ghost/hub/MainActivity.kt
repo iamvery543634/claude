@@ -29,6 +29,7 @@ import android.widget.HorizontalScrollView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
@@ -42,7 +43,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.radiobutton.MaterialRadioButton
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var chipsRow: LinearLayout
     private lateinit var listBox: LinearLayout
     private lateinit var floatBtn: TextView
+    private lateinit var footer: TextView
 
     private val main = Handler(Looper.getMainLooper())
     private val pool = Executors.newSingleThreadExecutor()
@@ -130,10 +134,11 @@ class MainActivity : AppCompatActivity() {
         }, LinearLayout.LayoutParams(MATCH, WRAP).apply { topMargin = dp(18) })
         listBox = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(0, dp(8), 0, 0) }
         content.addView(listBox)
-        content.addView(label("👻  Hosted on your PC · nothing leaves your Wi-Fi", 12f, col(R.color.text3)).apply {
+        footer = label(footerText(), 12f, col(R.color.text3)).apply {
             gravity = Gravity.CENTER
             setPadding(0, dp(22), 0, dp(70))
-        }, LinearLayout.LayoutParams(MATCH, WRAP))
+        }
+        content.addView(footer, LinearLayout.LayoutParams(MATCH, WRAP))
 
         ViewCompat.setOnApplyWindowInsetsListener(root) { _, insets ->
             val b = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
@@ -207,11 +212,11 @@ class MainActivity : AppCompatActivity() {
             background = rounded(0x331D2129, dpf(16f), 0x33FFFFFF, dp(1))
             setPadding(dp(12), dp(7), dp(14), dp(7))
             rippleForeground()
-            setOnClickListener { showServerDialog() }
+            setOnClickListener { showSettings() }
         }
         statusDot = View(this).apply { background = oval(col(R.color.text3)) }
         pill.addView(statusDot, LinearLayout.LayoutParams(dp(9), dp(9)))
-        statusText = label("Looking for your PC…", 13f, col(R.color.text2)).apply { setPadding(dp(8), 0, 0, 0) }
+        statusText = label("Checking for updates…", 13f, col(R.color.text2)).apply { setPadding(dp(8), 0, 0, 0) }
         pill.addView(statusText)
         ObjectAnimator.ofFloat(statusDot, View.ALPHA, 1f, 0.35f).apply {
             duration = 900; repeatCount = ValueAnimator.INFINITE; repeatMode = ValueAnimator.REVERSE; start()
@@ -236,7 +241,11 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         if (loading) return
         loading = true
-        setStatus(R.color.yellow, if (repo.server != null) "Checking for updates…" else "Looking for your PC…")
+        setStatus(R.color.yellow, when (repo.source) {
+            Repo.Source.GITHUB -> "Checking GitHub…"
+            Repo.Source.PC -> if (repo.server != null) "Checking your PC…" else "Looking for your PC…"
+            Repo.Source.AUTO -> "Checking for updates…"
+        })
         messageBox.removeAllViews()
         pool.execute {
             val result = runCatching { repo.load() }
@@ -245,16 +254,28 @@ class MainActivity : AppCompatActivity() {
                 swipe.isRefreshing = false
                 result.onSuccess {
                     apps = it
-                    setStatus(R.color.green, "Connected to ${repo.serverName ?: "your PC"}")
+                    setStatus(R.color.green, sourceLabel())
+                    footer.text = footerText()
                     render()
                 }
                 result.onFailure { e ->
                     setStatus(R.color.red, "Not connected · tap to fix")
-                    showMessage(e.message ?: "Couldn't reach the Ghost Hub PC.")
+                    showMessage(e.message ?: "Couldn't get the app list.")
                     if (apps.isNotEmpty()) render() else listBox.removeAllViews()
                 }
             }
         }
+    }
+
+    /** Where the list came from, for the status pill: GitHub, or the PC over Wi-Fi. */
+    private fun sourceLabel(): String = when (repo.from) {
+        Repo.From.PC -> "Apps from ${repo.serverName ?: "your PC"} (Wi-Fi)"
+        else -> "Apps from GitHub"
+    }
+
+    private fun footerText(): String = when (repo.from) {
+        Repo.From.PC -> "👻  Apps from your PC · nothing leaves your Wi-Fi"
+        else -> "👻  Apps from GitHub · updates work anywhere"
     }
 
     private fun reReadInstalled() {
@@ -307,12 +328,16 @@ class MainActivity : AppCompatActivity() {
         }, LinearLayout.LayoutParams(dp(22), dp(22)))
         val texts = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(12), 0, 0, 0) }
         texts.addView(label(text, 15f, col(R.color.text)))
-        texts.addView(label("Check this phone and your PC are on the same Wi-Fi and the Ghost Hub server is running on the PC.",
-            13f, col(R.color.text2)).apply { setPadding(0, dp(4), 0, dp(6)) })
-        texts.addView(label("Enter PC address", 14f, col(R.color.accent), bold = true).apply {
+        val pcOnly = repo.source == Repo.Source.PC
+        texts.addView(label(when (repo.source) {
+            Repo.Source.PC -> "Check this phone and your PC are on the same Wi-Fi and the Ghost Hub server is running on the PC."
+            Repo.Source.GITHUB -> "Check your internet connection. Choose Auto in Settings to also use your PC on home Wi-Fi."
+            Repo.Source.AUTO -> "Check your internet connection. At home, the Hub can also use your PC over Wi-Fi while its server is running."
+        }, 13f, col(R.color.text2)).apply { setPadding(0, dp(4), 0, dp(6)) })
+        texts.addView(label(if (pcOnly) "Enter PC address" else "Settings", 14f, col(R.color.accent), bold = true).apply {
             rippleForeground(borderless = true)
             setPadding(0, dp(6), 0, dp(6))
-            setOnClickListener { showServerDialog() }
+            setOnClickListener { if (pcOnly) showServerDialog() else showSettings() }
         })
         card.addView(texts, LinearLayout.LayoutParams(0, WRAP, 1f))
         messageBox.addView(card)
@@ -711,7 +736,10 @@ class MainActivity : AppCompatActivity() {
                     render()
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Download didn't finish")
-                        .setMessage((err.message ?: "Something went wrong.") + "\n\nCheck you're still on the same Wi-Fi as your PC.")
+                        .setMessage((err.message ?: "Something went wrong.") + "\n\n" + when (repo.from) {
+                            Repo.From.PC -> "Check you're still on the same Wi-Fi as your PC."
+                            else -> "Check your internet connection and try again."
+                        })
                         .setPositiveButton("Try again") { _, _ ->
                             refreshThen { list -> list.firstOrNull { a -> a.entry.pkg == pkg }?.let { downloadAndInstall(it) } }
                         }
@@ -768,16 +796,89 @@ class MainActivity : AppCompatActivity() {
     // ---------------------------------------------------------------- settings
 
     private fun showSettings() {
-        val items = arrayOf("Check for updates in the background")
-        val checked = booleanArrayOf(repo.autoCheck)
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Ghost Hub ${BuildConfig.VERSION_NAME}")
-            .setMultiChoiceItems(items, checked) { _, _, isChecked ->
-                repo.autoCheck = isChecked
-                if (isChecked) UpdateReceiver.schedule(this)
+        val before = repo.source
+        val box = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(16), 0, dp(16), dp(4))
+        }
+        // Where the apps come from: GitHub works anywhere, the PC only on home Wi-Fi.
+        box.addView(sectionTitle("GET APPS FROM"))
+        val group = RadioGroup(this)
+        val ids = Repo.Source.entries.associateBy { View.generateViewId() }
+        ids.forEach { (id, s) ->
+            group.addView(MaterialRadioButton(this).apply {
+                this.id = id
+                text = s.title
+                setTextColor(col(R.color.text))
+                isChecked = s == repo.source
+            })
+        }
+        group.setOnCheckedChangeListener { _, id -> ids[id]?.let { repo.source = it } }
+        box.addView(group)
+
+        lateinit var dialog: androidx.appcompat.app.AlertDialog
+        box.addView(sectionTitle("ADDRESSES"))
+        box.addView(settingRow("GitHub", repo.githubIndex.removePrefix("https://")) { dialog.dismiss(); showGitHubDialog() })
+        box.addView(settingRow("PC", repo.server ?: "found automatically on Wi-Fi") { dialog.dismiss(); showServerDialog() })
+
+        box.addView(MaterialCheckBox(this).apply {
+            text = "Check for updates in the background"
+            setTextColor(col(R.color.text))
+            isChecked = repo.autoCheck
+            setOnCheckedChangeListener { _, on ->
+                repo.autoCheck = on
+                if (on) UpdateReceiver.schedule(this@MainActivity)
             }
-            .setNeutralButton("PC address…") { _, _ -> showServerDialog() }
+        }, LinearLayout.LayoutParams(MATCH, WRAP).apply { topMargin = dp(12) })
+
+        dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Ghost Hub ${BuildConfig.VERSION_NAME}")
+            .setView(ScrollView(this).apply { addView(box) })
             .setPositiveButton("Done", null)
+            .setOnDismissListener { if (repo.source != before) refresh() }
+            .show()
+    }
+
+    /** One tappable "name   value ›" line in Settings. */
+    private fun settingRow(name: String, value: String, onClick: () -> Unit) = LinearLayout(this).apply {
+        gravity = Gravity.CENTER_VERTICAL
+        setPadding(dp(8), dp(10), dp(8), dp(10))
+        rippleForeground()
+        setOnClickListener { onClick() }
+        addView(label(name, 15f, col(R.color.text)), LinearLayout.LayoutParams(dp(64), WRAP))
+        addView(label(value, 13f, col(R.color.text2)).apply { singleLine() }, LinearLayout.LayoutParams(0, WRAP, 1f))
+        addView(label("›", 18f, col(R.color.text3)).apply { setPadding(dp(8), 0, 0, 0) })
+    }
+
+    private fun showGitHubDialog() {
+        val box = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(24), dp(12), dp(24), 0)
+        }
+        box.addView(label("The index.json in your GitHub builds repo. Leave it as it is unless the repo moved.", 14f, col(R.color.text2)))
+        val input = EditText(this).apply {
+            hint = Repo.DEFAULT_GITHUB_INDEX
+            setText(repo.githubIndex)
+            setHintTextColor(col(R.color.text3))
+            setTextColor(col(R.color.text))
+            inputType = InputType.TYPE_TEXT_VARIATION_URI
+            setPadding(0, dp(16), 0, 0)
+        }
+        box.addView(input)
+        MaterialAlertDialogBuilder(this)
+            .setTitle("GitHub address")
+            .setView(box)
+            .setPositiveButton("Save") { _, _ ->
+                var v = input.text.toString().trim()
+                if (v.isNotBlank() && !v.startsWith("http")) v = "https://$v"
+                repo.githubIndex = v
+                refresh()
+            }
+            .setNeutralButton("Reset") { _, _ ->
+                repo.githubIndex = ""
+                refresh()
+            }
+            .setNegativeButton("Cancel", null)
             .show()
     }
 
@@ -849,7 +950,7 @@ class MainActivity : AppCompatActivity() {
         InstallState.NOT_INSTALLED -> "Not installed · ${st.entry.versionName}"
         InstallState.UP_TO_DATE -> "${st.installedName} · up to date"
         InstallState.UPDATE -> "${st.installedName} → ${st.entry.versionName}"
-        InstallState.INSTALLED_NEWER -> "${st.installedName} · newer than the PC"
+        InstallState.INSTALLED_NEWER -> "${st.installedName} · newer than the Hub's"
     }
 
     private fun versionColor(st: AppStatus): Int = col(when (st.state) {

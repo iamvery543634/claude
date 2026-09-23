@@ -103,6 +103,14 @@ def main() -> int:
     tmp.write_text(json.dumps(index, indent=2), encoding="utf-8")
     tmp.replace(index_path)
     print(f"Published {len(entries)} apps to {WWW}")
+
+    # With a GitHub token set up (see PC_STEPS.md), also publish to the builds repo so phones can update
+    # from anywhere. A GitHub problem never breaks the local Hub: it's reported and we still exit 0.
+    import publish_github
+    if publish_github.token_available():
+        publish_github.main()
+    else:
+        print("  github  skipped: no token yet (see PC_STEPS.md)")
     return 0
 
 

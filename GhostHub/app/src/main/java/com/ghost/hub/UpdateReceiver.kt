@@ -9,7 +9,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import kotlin.concurrent.thread
 
-/** Fires periodically: if the PC is reachable and has newer apps, posts one notification. */
+/** Fires periodically: if GitHub (or the PC) is reachable and has newer apps, posts one notification. */
 class UpdateReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val app = context.applicationContext
@@ -18,7 +18,8 @@ class UpdateReceiver : BroadcastReceiver() {
         val pending = goAsync()
         thread {
             try {
-                val updates = runCatching { repo.load() }.getOrNull()
+                // Short timeouts: a receiver only gets a few seconds before Android may stop it.
+                val updates = runCatching { repo.load(quick = true) }.getOrNull()
                     ?.filter { it.state == InstallState.UPDATE }
                     ?: emptyList()
                 if (updates.isNotEmpty()) notify(app, updates)
